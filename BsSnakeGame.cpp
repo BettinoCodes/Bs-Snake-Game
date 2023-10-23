@@ -56,8 +56,6 @@ public:
     deque<Vector2> body = { Vector2{6, 9}, Vector2{5, 9}, Vector2{4, 9} };
     Vector2 direction = { 1, 0 };
     bool addSegment = false;
-    float speed = 1.0;
-    float speedMultiplier = 1.0;
 
     void Draw()
     {
@@ -80,8 +78,7 @@ public:
         Vector2 newPosition = Vector2Add(body[0], direction);
 
         body.push_front(newPosition);
-
-
+        
         if (addSegment == false)
         {
             body.pop_back();
@@ -109,7 +106,6 @@ public:
 
     Food(deque<Vector2> snakeBody)
     {
-
         position = GenerateRandomPos(snakeBody);
     }
 
@@ -332,7 +328,6 @@ int main()
             allowMove = false;
         }
 
-        // Drawing
         ClearBackground(BLUE);
         DrawRectangleLinesEx(Rectangle{ (float)offset - 5, (float)offset - 5, (float)cellSize * cellCount + 10, (float)cellSize * cellCount + 10 }, 5, darkGreen);
         DrawText("WELCOME TO B's SNAKE MANIA ", offset - 5, 20, 40, darkGreen);
