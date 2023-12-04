@@ -39,7 +39,7 @@ bool ElementInVector(Vector2 element, Vector2 element2) {
 
 
 bool EventTriggered(double interval)
-{      
+{
     interval = intervalInitial;
     double currentTime = GetTime();
     if (currentTime - lastUpdateTime >= interval)
@@ -67,18 +67,14 @@ public:
         }
     }
 
-    void setSpeed()
-    {   
-        speedMultiplier += 1.0;
-    }
 
     void Update()
     {
-        
+
         Vector2 newPosition = Vector2Add(body[0], direction);
 
         body.push_front(newPosition);
-        
+
         if (addSegment == false)
         {
             body.pop_back();
@@ -86,7 +82,7 @@ public:
         else {
             addSegment = false;
         }
-       
+
     }
 
 
@@ -112,7 +108,7 @@ public:
 
     void Draw()
     {
-        DrawRectangle(offset + position.x * cellSize, offset + position.y * cellSize,cellSize, cellSize, RED);
+        DrawRectangle(offset + position.x * cellSize, offset + position.y * cellSize, cellSize, cellSize, RED);
     }
 
     Vector2 GenerateRandomCell()
@@ -134,7 +130,7 @@ public:
 };
 
 class PowerUps
-{   
+{
 public:
     Vector2 position;
 
@@ -142,10 +138,10 @@ public:
     Food food = Food(snake.body);
 
     PowerUps(deque<Vector2> snakeBody, Vector2 foodPosition)
-        {
+    {
 
-            position = GenerateRandomPos2(snakeBody, foodPosition);
-        }
+        position = GenerateRandomPos2(snakeBody, foodPosition);
+    }
 
     Vector2 GenerateRandomCell2()
     {
@@ -178,7 +174,7 @@ public:
     PowerUps powerup = PowerUps(snake.body, food.position);
     bool running = true;
     int score = 0;
-    
+
     void powerUp1() {
         Vector2 newPosition;
         int n = 0;
@@ -200,7 +196,7 @@ public:
     }
 
     void powerUp2() {
-        interval1 -= .01;
+        intervalInitial -= .01;
     }
 
     void Draw()
@@ -229,7 +225,7 @@ public:
             food.position = food.GenerateRandomPos(snake.body);
             snake.addSegment = true;
             score++;
-            
+
         }
     }
 
@@ -237,13 +233,13 @@ public:
     {
         if (Vector2Equals(snake.body[0], powerup.position))
         {
-            int value = GetRandomValue(0, 1); 
+            int value = GetRandomValue(0, 1);
 
             if (value == 0)
             {
                 powerUp1();
             }
-            else 
+            else
             {
                 powerUp2();
             }
@@ -271,7 +267,7 @@ public:
         running = false;
         score = 0;
         intervalInitial = .25;
-      
+
     }
 
     void CheckCollisionWithTail()
